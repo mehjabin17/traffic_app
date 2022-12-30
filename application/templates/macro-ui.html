@@ -15,7 +15,7 @@
 </i>
 {% endmacro %}
 
-{% macro text_field(field_id_text, type, name, label, ph) %}
+{% macro input_field(field_id_text, type, name, label, ph) %}
 <div class="form-floating mb-3">
     <input name="{{ name }}" type="{{ type }}" class="form-control" id="{{ field_id_text }}" placeholder="{{ ph }}"
            required>
@@ -25,12 +25,12 @@
 
 {% macro email_field(name='email', label='Email Address') %}
 {% set field_id = 'field-'+name+'-'+random_int(1) %}
-{{ text_field(field_id, 'email', name, label, 'name@example.com' ) }}
+{{ input_field(field_id, 'email', name, label, 'name@example.com' ) }}
 {% endmacro %}
 
 {% macro pass_field(name='password', label='Password') %}
 {% set field_id = 'field-'+name+'-'+random_int(1)  -%}
-{{ text_field(field_id, name, 'password', label, 'Password' ) }}
+{{ input_field(field_id, 'password', name, label, 'Password' ) }}
 {% endmacro %}
 
 {% macro print_toast() %}

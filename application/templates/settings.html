@@ -32,15 +32,15 @@
 <div class="card-body ">
     <div class="tab-content">
         <div class="tab-pane active" id="rtsp-table-container" role="tabpanel"
-             aria-labelledby="rtsp-table-container-tab">RTSP
+             aria-labelledby="rtsp-table-container-tab">
+                    {% include 'ops-rtsp.html' %}
         </div>
         <div class="tab-pane" id="video-table-container" role="tabpanel" aria-labelledby="video-table-container-tab">
-            Video
+            {% include 'ops-video.html' %}
         </div>
         <div class="tab-pane" id="area-table-container" role="tabpanel" aria-labelledby="area-table-container-tab">
-            Area
+            {% include 'ops-area.html' %}
         </div>
     </div>
 </div>
-
 {%- endblock -%}
