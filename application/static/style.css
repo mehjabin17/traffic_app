@@ -1,0 +1,60 @@
+body {
+    font-family: "Trirong", serif;
+}
+
+.fixed-top {
+    z-index:  0;
+}
+
+#top-nav-bar{
+    height: 50px;
+}
+
+.container-fluid {
+    padding: 0;
+}
+
+#sidebar {
+    width: 50px;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+.navbar-brand {
+    padding: 0;
+    margin: 0;
+    height: 50px;
+}
+
+.flex-1{
+    flex: 1
+}
+
+#main{
+    padding-left: 70px;
+    padding-top: calc(70px - .5rem);
+    padding-right: 20px;
+}
+
+#auth-main{
+    width: 10vw;
+    min-width: 400px;
+}
+
+#auth-main .card-title{
+font-family: "Audiowide", sans-serif;
+}
+
+#auth-main .login .auth-icon{
+
+}
+
+.auth-icon{
+    font-size: 8rem;
+}
+
+.toast-container{
+    z-index: 1;
+}
+

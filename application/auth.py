@@ -1,11 +1,13 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, flash
 
 auth = Blueprint('auth', __name__)
 
 
 @auth.route('/login')
 def login():
-    pass
+    flash('Check Errror', category='error')
+    flash('Check Succ', category='success')
+    return render_template("login.html", page_type='login')
 
 
 @auth.route('/logout')
@@ -13,6 +15,8 @@ def logout():
     pass
 
 
-@auth.route('/sign-up')
+@auth.route('/add-new-user')
 def sign_up():
-    pass
+    flash('Check Errror', category='error')
+    flash('Check Succ', category='success')
+    return render_template("sign-up.html", page_type='register')

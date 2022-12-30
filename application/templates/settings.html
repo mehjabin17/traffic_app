@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block pagetitle %} Video {% endblock %}
+{% block page_head %} {{ super() }} Analytics {% endblock %}
+{% block page_ops %}
+<ul class="nav nav-tabs border-0" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active pb-2 pt-2 rounded-0" id="rtsp-tab" data-bs-toggle="tab"
+                data-bs-target="#rtsp-table-container" type="button"
+                role="tab" aria-controls="rtsp-table-container" aria-selected="true">RTSP Links
+        </button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link  pb-2 pt-2  rounded-0" id="video-tab" data-bs-toggle="tab"
+                data-bs-target="#video-table-container" type="button"
+                role="tab" aria-controls="video-table-container" aria-selected="false">Video for Analytics
+        </button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link  pb-2 pt-2 link-secondary rounded-0" id="area-tab" data-bs-toggle="tab"
+                data-bs-target="#area-table-container" type="button"
+                role="tab" aria-controls="area-table-container" aria-selected="false">Area
+        </button>
+    </li>
+</ul>
+{% endblock %}
+{% block card_head %}
+<div class="card-header bg-light bg-gradient">
+    card header
+</div>
+{% endblock %}
+{% block content_bottom %}
+<div class="card-body ">
+    <div class="tab-content">
+        <div class="tab-pane active" id="rtsp-table-container" role="tabpanel"
+             aria-labelledby="rtsp-table-container-tab">RTSP
+        </div>
+        <div class="tab-pane" id="video-table-container" role="tabpanel" aria-labelledby="video-table-container-tab">
+            Video
+        </div>
+        <div class="tab-pane" id="area-table-container" role="tabpanel" aria-labelledby="area-table-container-tab">
+            Area
+        </div>
+    </div>
+</div>
+
+{%- endblock -%}

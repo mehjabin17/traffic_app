@@ -1,0 +1,12 @@
+{% extends "auth-base.html" %}
+{% from 'macro-ui.html' import icon, email_field, pass_field %}
+{% block pagetitle %} Login {% endblock %}
+{% block auth_title %}Please Login{% endblock %}
+{% block auth_icon %}
+{{ icon('person-lock') }}
+{% endblock %}
+{% block auth_form %}
+{{ email_field() }}
+{{ pass_field() }}
+{% endblock %}
+{% block auth_form_submit_text %}Login{% endblock %}

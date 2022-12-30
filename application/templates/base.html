@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>iTraffic - {% block pagetitle %} {% endblock %}</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='images/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='images/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='images/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ url_for('static', filename='images/site.webmanifest') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Trirong">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="min-vw-100 min-vh-100 bg-light d-flex">
+{% set vars = { 'page-icon': none, 'current-page': none, 'no-mid': false, 'col-1': 9, 'col-2':3 } -%}
+{% from 'macro-ui.html' import icon, print_toast %}
+<!-- Top Nav -->
+<nav class="navbar-expand-lg auto-hiding-navbar bg-dark fixed-top">
+    <div id="top-nav-bar" class="collapse navbar-collapse d-flex justify-content-end">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle link-secondary" href="#" id="navbarDropdown" role="button"
+                   data-bs-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    sadot@gmail.com
+                </a>
+                <div class="dropdown-menu rounded-0" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item " href="{{ url_for('auth.sign_up') }}">Create New Account</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link link-secondary" href="{{ url_for('auth.logout') }}">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="d-flex col">
+    <nav id="sidebar" class="min-vh-100 d-flex flex-column bg-dark">
+        <a class="navbar-brand d-flex justify-content-center align-items-center" href="{{ url_for('view.home') }}">
+            <img class="img-fluid p-3" src="{{ url_for('static', filename='images/logo.png') }}"/>
+        </a>
+        <div class="col d-flex justify-content-center align-items-center">
+            <ul class="nav ">
+                {% for item in nav.sidebar %}
+                <li class="nav-item">
+                    <a class="nav-link {{ 'link-light' if item.is_active else 'link-secondary' }}"
+                       aria-current="page"
+                       href="{{ item.url }}">
+                        {% if item.is_active %}
+                        {% if item.html_attrs.no_mid_sect == true %}
+                        {% if vars.update({'no-mid': true}) %} {% endif %}
+                        {% endif %}
+                        {% if vars.update({'col-1': item.html_attrs.col_1}) %} {% endif %}
+                        {% if vars.update({'col-2': item.html_attrs.col_2}) %} {% endif %}
+                        {% if vars.update({'page-icon': item.html_attrs.icon}) %} {% endif %}
+                        {% if vars.update({'current-page': item.label}) %} {% endif %}
+                        {% endif %}
+                        {{ icon(item.html_attrs.icon, { 'l': item.label, 'p': 'right' }) }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </nav>
+    <div id="main" class="d-flex col flex-column">
+        {{ print_toast() }}
+        <section id="page-ops" class="page-head border-bottom mb-1">
+            <div class="row">
+                <h5 class="col text-uppercase pt-2 pb-0">
+                    {{ icon(vars['page-icon']) }}
+                    {% block page_head %} {{ vars['current-page'] }}{% endblock %}
+                </h5>
+                <div class="col d-flex justify-content-end">
+                    {% block page_ops %}{% endblock %}
+                </div>
+            </div>
+        </section>
+        <section id="page-body" class="col d-flex flex-column">
+            {% if vars['no-mid'] == false %}
+            <div class="row mb-1">
+                <div class="col-{{ vars['col-1'] }} pe-0">
+                    <div class="card rounded-0">
+                        <div class="card-body h-100">
+                            {% block content_top_left %}{% endblock %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-{{ vars['col-2'] }} ps-1">
+                    <div class="card rounded-0 h-100">
+                        <div class="card-body">
+                            {% block content_top_right %}{% endblock %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            <div class="row col">
+                <div class="col d-flex">
+                    <div class="card col mb-1 rounded-0">
+                        {% block card_head %}{% endblock %}
+                        {% block content_bottom %}
+                        page content will go here...
+                        {% endblock -%}
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"
+        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+<script src="{{url_for('static', filename='script.js')}}"></script>
+</body>
+</html>
